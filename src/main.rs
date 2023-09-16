@@ -1,8 +1,11 @@
 mod card;
 mod deck;
+mod player;
 
 fn main() {
     let mut deck = deck::Deck::new();
-    let card = deck.draw_card().unwrap();
-    println!("{}", card.show());
+    let mut player = player::Player::new("Juan".to_string());
+    player.add_card(deck.draw_card());
+    player.add_card(deck.draw_card());
+    println!("{} {}", player.name(), player.show_hand());
 }

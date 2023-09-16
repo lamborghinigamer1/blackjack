@@ -11,6 +11,10 @@ impl Card {
         card
     }
 
+    pub fn is_ace(&self) -> bool {
+        self.value == "A"
+    }
+
     fn validate_suit(&mut self) -> bool {
         let valid_suit = ["Hearts", "Spades", "Diamonds", "Clubs"];
         let changesuit = ["♥", "♠", "♦", "♣"];
@@ -24,16 +28,33 @@ impl Card {
         }
         panic!("Invalid suit: {}", self.suit);
     }
-    fn validate_value(&self) {
+
+    fn validate_value(&mut self) -> bool {
         let valid_values = [
             "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King",
         ];
-        if !valid_values.contains(&self.value.as_str()) {
-            panic!("Invalid value: {}", self.value);
+        for value in valid_values {
+            if value == self.value {
+                self.value = value.chars().next().unwrap().to_string();
+                return true;
+            }
         }
+        panic!("Invalid value: {}", self.value);
     }
+
     pub fn show(&self) -> String {
         let show = format!("{} {}", self.suit, self.value);
         show
+    }
+
+    pub fn score(&self, highace: bool) -> i32 {
+        match self.value.as_str() {
+            "A" => 11,
+            "B" | "Q" | "J" | "K" => 10,
+            _ => match self.value.parse::<i32>() {
+                Ok(parsedvalue) => parsedvalue,
+                Err(_) => 0,
+            },
+        }
     }
 }

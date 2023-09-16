@@ -20,9 +20,13 @@ impl Deck {
         }
         Deck { cards }
     }
-    pub fn draw_card(&mut self) -> Option<Card> {
+    pub fn draw_card(&mut self) -> Card {
         let mut rng = thread_rng();
         self.cards.shuffle(&mut rng);
-        self.cards.pop()
+        if let Some(card) = self.cards.pop() {
+            card
+        } else {
+            panic!("No card left")
+        }
     }
 }
