@@ -1,6 +1,8 @@
 mod card;
+mod deck;
 
 fn main() {
-    let card = card::Card::new("Hearts".to_string(), "Ace".to_string());
+    let mut deck = deck::Deck::new();
+    let card = deck.draw_card().unwrap();
     println!("{}", card.show());
 }
