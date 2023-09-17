@@ -1,15 +1,13 @@
 mod blackjack;
 mod card;
+mod dealer;
 mod deck;
 mod player;
 
 fn main() {
-    let mut deck = deck::Deck::new();
-    let mut player = player::Player::new("Juan".to_string());
-    player.add_card(deck.draw_card());
-    player.add_card(deck.draw_card());
-
-    let black_jack = blackjack::Blackjack::score_hand(&player.hand());
-
-    println!("{} {} {}", player.name(), player.show_hand(), black_jack);
+    let mut dealer = dealer::Dealer::new(blackjack::Blackjack, deck::Deck::new());
+    dealer.add_player(player::Player::new("Lambo".to_string()));
+    dealer.add_player(player::Player::new("Tijmoe".to_string()));
+    dealer.add_player(player::Player::new("Dealer".to_string()));
+    dealer.play_game();
 }
