@@ -23,7 +23,7 @@ impl Player {
         }
         returnstring
     }
-    pub fn hand(self) -> Vec<Card> {
-        self.hand
+    pub fn hand(&self) -> &Vec<Card> {
+        &self.hand
     }
 }

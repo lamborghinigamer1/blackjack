@@ -11,10 +11,6 @@ impl Card {
         card
     }
 
-    pub fn is_ace(&self) -> bool {
-        self.value == "A"
-    }
-
     fn validate_suit(&mut self) -> bool {
         let valid_suit = ["Hearts", "Spades", "Diamonds", "Clubs"];
         let changesuit = ["♥", "♠", "♦", "♣"];
@@ -49,7 +45,13 @@ impl Card {
 
     pub fn score(&self, highace: bool) -> i32 {
         match self.value.as_str() {
-            "A" => 11,
+            "A" => {
+                if highace {
+                    11
+                } else {
+                    1
+                }
+            }
             "B" | "Q" | "J" | "K" => 10,
             _ => match self.value.parse::<i32>() {
                 Ok(parsedvalue) => parsedvalue,
