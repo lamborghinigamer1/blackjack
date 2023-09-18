@@ -20,7 +20,7 @@ impl Blackjack {
             }
             (score, _) if score > 21 => "Bust!".to_string(),
             (_, 5) => "Five Card Charlie.".to_string(),
-            (score, _) => format!("Score: {}", score),
+            (score, _) => format!("score is: {}", score),
         }
     }
 }

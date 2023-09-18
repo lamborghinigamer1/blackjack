@@ -17,9 +17,9 @@ impl Player {
         self.hand.push(card);
     }
     pub fn show_hand(&self) -> String {
-        let mut returnstring = "has ".to_string();
+        let mut returnstring = "has".to_string();
         for card in &self.hand {
-            returnstring += &format!("{} ", &card.show());
+            returnstring += &format!(" {}", &card.show());
         }
         returnstring
     }

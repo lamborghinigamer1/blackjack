@@ -30,7 +30,7 @@ impl Dealer {
             player.add_card(self.deck.draw_card());
             player.add_card(self.deck.draw_card());
             println!(
-                "{} {} {}",
+                "{} {} -> {}",
                 player.name(),
                 player.show_hand(),
                 self.blackjack.score_hand(&player.hand())
@@ -49,7 +49,11 @@ impl Dealer {
                         break;
                     }
 
-                    println!("{}, would you like another card? (y/n)", player.name());
+                    println!(
+                        "{} your {}, would you like another card? (y/n)",
+                        player.name(),
+                        playerscore
+                    );
                     std::io::stdin().read_line(&mut anothercard).unwrap();
 
                     if anothercard.to_lowercase().trim() == "y" {
@@ -60,12 +64,23 @@ impl Dealer {
                             player.name(),
                             &player.hand().last().unwrap().show()
                         );
-                        println!("{} {} {}", player.name(), player.show_hand(), playerscore);
+                        println!(
+                            "{} {} -> {}",
+                            player.name(),
+                            player.show_hand(),
+                            playerscore
+                        );
                     } else {
                         break;
                     }
                 }
             } else {
+                println!(
+                    "{} {} -> {}",
+                    player.name(),
+                    player.show_hand(),
+                    self.blackjack.score_hand(&player.hand())
+                );
                 loop {
                     let mut dealerscore = 0;
 
@@ -82,10 +97,10 @@ impl Dealer {
                             &player.hand().last().unwrap().show()
                         );
                         println!(
-                            "{} {} {}",
+                            "{} {} -> {}",
                             player.name(),
                             player.show_hand(),
-                            self.blackjack.score_hand(&player.hand())
+                            self.blackjack.score_hand(&player.hand()).trim()
                         );
                     }
                 }
