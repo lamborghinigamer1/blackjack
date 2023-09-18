@@ -32,6 +32,9 @@ impl Card {
         for value in valid_values {
             if value == self.value {
                 self.value = value.chars().next().unwrap().to_string();
+                if self.value == "1" {
+                    self.value = "10".to_string();
+                }
                 return true;
             }
         }

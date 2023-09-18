@@ -11,7 +11,13 @@ impl Blackjack {
             cards += 1;
         }
         match (score, cards) {
-            (score, _) if score == 21 => "Black Jack!".to_string(),
+            (score, _) if score == 21 => {
+                if cards == 2 {
+                    "Blackjack!".to_string()
+                } else {
+                    "Twenty one!".to_string()
+                }
+            }
             (score, _) if score > 21 => "Bust!".to_string(),
             (_, 5) => "Five Card Charlie.".to_string(),
             (score, _) => format!("Score: {}", score),
