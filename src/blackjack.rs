@@ -7,7 +7,11 @@ impl Blackjack {
         let mut score = 0;
         let mut cards = 0;
         for card in hand {
-            score += card.score(true);
+            if score < 11 {
+                score += card.score(true);
+            } else {
+                score += card.score(false);
+            }
             cards += 1;
         }
         match (score, cards) {

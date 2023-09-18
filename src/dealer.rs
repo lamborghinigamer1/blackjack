@@ -45,6 +45,7 @@ impl Dealer {
                     if playerscore == "Bust!"
                         || playerscore == "Twenty one!"
                         || playerscore == "Blackjack!"
+                        || playerscore == "Five Card Charlie."
                     {
                         break;
                     }
@@ -83,11 +84,17 @@ impl Dealer {
                 );
                 loop {
                     let mut dealerscore = 0;
+                    let mut amountcard = 0;
 
                     for card in player.hand() {
-                        dealerscore += card.score(true);
+                        if dealerscore < 11 {
+                            dealerscore += card.score(true)
+                        } else {
+                            dealerscore += card.score(false);
+                        }
+                        amountcard += 1;
                     }
-                    if dealerscore > 18 {
+                    if dealerscore > 17 || amountcard == 5 {
                         break;
                     } else {
                         player.add_card(self.deck.draw_card());
