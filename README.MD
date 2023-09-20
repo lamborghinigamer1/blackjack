@@ -22,7 +22,7 @@ Blackjack is a card game commonly played in casinos. I decided to make this proj
 
 1. Create a new Cargo project and add add 
 
-```
+```toml
 [dependencies]
 blackjack = { git = "https://github.com/lamborghinigamer1/blackjack.git" }
 ```
@@ -30,7 +30,7 @@ in your Cargo.toml file
 
 2. To start a new blackjack game in the console just add
 
-```
+```rust
 use blackjack::{Dealer, Deck, Player};
 
 fn main() {
