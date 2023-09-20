@@ -29,12 +29,17 @@ impl Dealer {
         for player in &mut self.players {
             player.add_card(self.deck.draw_card());
             player.add_card(self.deck.draw_card());
-            println!(
-                "{} {} -> {}",
-                player.name(),
-                player.show_hand(),
-                self.blackjack.score_hand(&player.hand())
-            );
+
+            if player.name() != "Dealer" {
+                println!(
+                    "{} {}-> {}",
+                    player.name(),
+                    player.show_hand(),
+                    self.blackjack.score_hand_int(&player.hand())
+                );
+            } else {
+                println!("{} has ?? {} -> ?", player.name(), player.show_last_card());
+            }
         }
         for player in &mut self.players {
             if player.name() != "Dealer" {
@@ -66,7 +71,7 @@ impl Dealer {
                             &player.hand().last().unwrap().show()
                         );
                         println!(
-                            "{} {} -> {}",
+                            "{} has {}-> {}",
                             player.name(),
                             player.show_hand(),
                             playerscore
@@ -77,7 +82,7 @@ impl Dealer {
                 }
             } else {
                 println!(
-                    "{} {} -> {}",
+                    "{} has {}-> {}",
                     player.name(),
                     player.show_hand(),
                     self.blackjack.score_hand(&player.hand())
@@ -104,7 +109,7 @@ impl Dealer {
                             &player.hand().last().unwrap().show()
                         );
                         println!(
-                            "{} {} -> {}",
+                            "{} has {}-> {}",
                             player.name(),
                             player.show_hand(),
                             self.blackjack.score_hand(&player.hand()).trim()
@@ -112,6 +117,18 @@ impl Dealer {
                     }
                 }
             }
+        }
+        for player in &mut self.players {
+            println!(
+                "{} has {}-> {}",
+                player.name(),
+                player.show_hand(),
+                self.blackjack.score_hand(&player.hand())
+            );
+        }
+
+        for finalscore in self.blackjack.check_final_scores(&mut self.players) {
+            println!("{}", finalscore);
         }
     }
 }

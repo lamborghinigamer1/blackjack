@@ -17,10 +17,15 @@ impl Player {
         self.hand.push(card);
     }
     pub fn show_hand(&self) -> String {
-        let mut returnstring = "has".to_string();
+        let mut returnstring = "".to_string();
         for card in &self.hand {
-            returnstring += &format!(" {}", &card.show());
+            returnstring += &format!("{} ", &card.show());
         }
+        returnstring
+    }
+    pub fn show_last_card(&self) -> String {
+        let mut returnstring = "".to_string();
+        returnstring += &format!("{}", &self.hand().last().unwrap().show());
         returnstring
     }
     pub fn hand(&self) -> &Vec<Card> {
