@@ -16,9 +16,17 @@ fn main() {
         Err(e) => panic!("Invalid number: {}", e),
     };
     for _ in 0..players_amount {
-        println!("Player's name:");
         let mut playername = String::new();
-        std::io::stdin().read_line(&mut playername).unwrap();
+        println!("Player's name:");
+        loop {
+            std::io::stdin().read_line(&mut playername).unwrap();
+            if playername.trim().is_empty() {
+                println!("Please provide a valid name");
+            }
+            else {
+                break;
+            }
+        }
         dealer.add_player(player::Player::new(playername.trim().to_string()));
     }
 
