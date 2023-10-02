@@ -32,13 +32,13 @@ impl Dealer {
 
             if player.name() != "Dealer" {
                 println!(
-                    "{} {}-> {}",
+                    "{} has: {}-> {}",
                     player.name(),
                     player.show_hand(),
                     self.blackjack.score_hand_int(&player.hand())
                 );
             } else {
-                println!("{} has ?? {} -> ?", player.name(), player.show_last_card());
+                println!("{} has: ?? {} -> ?", player.name(), player.show_last_card());
             }
         }
         for player in &mut self.players {
@@ -71,7 +71,7 @@ impl Dealer {
                             &player.hand().last().unwrap().show()
                         );
                         println!(
-                            "{} has {}-> {}",
+                            "{} has: {}-> {}",
                             player.name(),
                             player.show_hand(),
                             playerscore
@@ -82,7 +82,7 @@ impl Dealer {
                 }
             } else {
                 println!(
-                    "{} has {}-> {}",
+                    "{} has: {}-> {}",
                     player.name(),
                     player.show_hand(),
                     self.blackjack.score_hand(&player.hand())
@@ -109,7 +109,7 @@ impl Dealer {
                             &player.hand().last().unwrap().show()
                         );
                         println!(
-                            "{} has {}-> {}",
+                            "{} has: {}-> {}",
                             player.name(),
                             player.show_hand(),
                             self.blackjack.score_hand(&player.hand()).trim()
@@ -120,7 +120,7 @@ impl Dealer {
         }
         for player in &mut self.players {
             println!(
-                "{} has {}-> {}",
+                "{} has: {}-> {}",
                 player.name(),
                 player.show_hand(),
                 self.blackjack.score_hand(&player.hand())
