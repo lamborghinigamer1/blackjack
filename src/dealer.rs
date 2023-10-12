@@ -76,8 +76,10 @@ impl Dealer {
                             player.show_hand(),
                             playerscore
                         );
-                    } else {
+                    } else if anothercard.to_lowercase().trim() == "n" {
                         break;
+                    } else {
+                        println!("Invalid input");
                     }
                 }
             } else {
