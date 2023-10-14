@@ -20,7 +20,7 @@ fn main() {
         println!("Player's name:");
         loop {
             std::io::stdin().read_line(&mut playername).unwrap();
-            if playername.trim().is_empty() {
+            if playername.trim().is_empty() || playername.trim() == "Dealer" {
                 println!("Please provide a valid name");
             }
             else {
